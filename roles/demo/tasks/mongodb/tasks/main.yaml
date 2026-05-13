@@ -1,3 +1,8 @@
+- name: remove old mongo repo
+  file:
+    path: /etc/yum.repos.d/mongo.repo
+    state: absent
+
 - name: copy mongo repo
   copy:
     src: mongo.repo
@@ -6,7 +11,7 @@
 - name: clean yum cache
   command: yum clean all
 
-- name: make cache
+- name: make yum cache
   command: yum makecache
 
 - name: install mongodb-org
